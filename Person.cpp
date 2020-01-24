@@ -78,11 +78,11 @@ void Person::drinksAbfragen(Person &a){
               a.drinkHinzufuegen(eigenes, 1);
             }
             else{
-              throw std::runtime_error("Falsche Eingabe");
+              throw std::invalid_argument("Falsche Eingabe");
             }
           }
           else{
-            throw std::runtime_error("Falsche Eingabe");
+            throw std::invalid_argument("Falsche Eingabe");
           }
         }
           break;
@@ -95,7 +95,7 @@ void Person::drinksAbfragen(Person &a){
           break;
       }
     }
-    catch(std::runtime_error& ausnahme){
+    catch(std::invalid_argument& ausnahme){
         std::cerr << "Fehler! Überprüfe bitte deine Eingabe.\n";          
     }
     
@@ -108,7 +108,7 @@ int Person::intEingabePruefen(int i){
   if(!(std::cin >> eingabe) || eingabe <= 0 || eingabe > i){
     std::cin.clear();
     std::cin.ignore(INT8_MAX, '\n');
-    throw std::runtime_error("Falsche Eingabe");
+    throw std::invalid_argument("Falsche Eingabe");
   }
   else{
     std::cin.clear();
@@ -126,18 +126,18 @@ float Person::floatEingabePruefen(){
     if(stelle != std::string::npos){
         std::cin.clear();
         std::cin.ignore(INT8_MAX, '\n');
-        throw std::runtime_error("Falsche Eingabe");   
+        throw std::invalid_argument("Falsche Eingabe");   
     }
     else if(eingabe.find(".", stelle+1) != std::string::npos){
       std::cin.clear();
       std::cin.ignore(INT8_MAX, '\n');
-      throw std::runtime_error("Falsche Eingabe");
+      throw std::invalid_argument("Falsche Eingabe");
     }
     else{
       eingabe.replace(eingabe.find(","),1 , ".");
       float ausgabe = std::stof(eingabe);
       if(ausgabe < 0){
-        throw std::runtime_error("Falsche Eingabe");
+        throw std::invalid_argument("Falsche Eingabe");
       }
       else{
         return ausgabe;
@@ -151,17 +151,17 @@ float Person::floatEingabePruefen(){
       if(stelle != std::string::npos){
         std::cin.clear();
         std::cin.ignore(INT8_MAX, '\n');
-        throw std::runtime_error("Falsche Eingabe");   
+        throw std::invalid_argument("Falsche Eingabe");   
       }
       else if(eingabe.find(",", stelle+1) != std::string::npos){
         std::cin.clear();
         std::cin.ignore(INT8_MAX, '\n');
-        throw std::runtime_error("Falsche Eingabe");
+        throw std::invalid_argument("Falsche Eingabe");
       }
       else{
         float ausgabe = std::stof(eingabe);
         if(ausgabe < 0){
-          throw std::runtime_error("Falsche Eingabe");
+          throw std::invalid_argument("Falsche Eingabe");
         }
         else{
           return ausgabe;
@@ -171,7 +171,7 @@ float Person::floatEingabePruefen(){
     else{
         float ausgabe = std::stof(eingabe);
         if(ausgabe < 0){
-          throw std::runtime_error("Falsche Eingabe");
+          throw std::invalid_argument("Falsche Eingabe");
         }
         else{
           return ausgabe;

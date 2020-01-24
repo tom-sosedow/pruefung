@@ -108,32 +108,30 @@ Fehlerhafte Eingaben abfangen:
     erwartete Aktion: Fehlermeldung ausgeben und Nutzer neues Getränk auswählen lassen. "Fehlerhaftes" Getränk wird nicht der Alkoholsumme des Nutzers aufaddiert. 
     erwartete Aktion trifft ein
 
-2. Kommazahlen mit ',' anstelle eines Punktes eingeben:
-    Erwartung: std::cin liest bis zum Komma, erkennt dieses als nicht-Teil der erwarteten Integer/double Zahl
-    und liest speichert nur den Wert vor dem Komma ein. Der Rest verbleibt im Buffer und generiert bei der nächsten Eingabe einen Fehler.
+2. Kommazahlen mit ',' anstelle eines Punktes '.' eingeben und Mischung mit anderen Sonderzeichen:
+    Erwartung: Kommazahlen , die nicht mit einem Punkt '.', sondern mit einem Komma ',' eingegeben werden, werden in das korekkte Format konvertiert. Falls mehr als ein Komma/Punkt 
+    eingegeben werden, führt es zu einer Fehlermeldung durch werfen einer Instanz eines std::invalid_argument und der Nutzer startet im vorherigen Auswahlmenü neu.
     
-    -> 1 (Mann)
-    -> 80,5 (Körpergewicht, ungültig, Gewicht des Nutzers wird als 80 abgespeichert und generiert im Getränkemenü einen Fehler)
+    -> 1,5 (Mann, ungültige Eingabe, 1 wird angenommen und der Rest (,5) aus dem Puffer gelöscht, sodass es keine weiteren Menüs beeinflusst)
+    -> 80,5 (Körpergewicht, ungültige Formatierung wird im Hintergrund berichtigt und als 80.5 abgespeichert)
     -> 1 (Bier) 
-    -> 1 (Menge, 1 Glas á 250ml)
+    -> 2,5 (Menge, 1 Glas á 250ml)
     -> 9 (Fertig)
-    Ausgabe sollten für einen 80kg schweren Mann stimmen:
-    Ausgabe: Du hast ca. 0.183824 Promille Alkohol im Blut. //Korrekt
+    Ausgabe zeigt korrekten Blutalkoholwert an.
 
-    Da bei jeder Eingabe erneut geprüft wird, ob das eingelesene Korrekt ist, wird die Aktion im nächsten Schritt nach der 
-    fehlerhaften Eingabe unterbrochen. Falls es die letzte Eingabe im Menübaum ist, so wird mit der Zahl vor dem Komma als Ganzzahl weiter gerechnet. 
-    Beispiel 1: siehe vorheriges Beispiel.
-    Beispiel 2:
-        -> 1 (Mann)
-        -> 80 (Gewicht)
-        -> 8 (eigenes Getränk)
-        -> 5 (Vol% eines Bieres)
-        -> 250,9 (Menge, ungültig, es wird 250 als Menge eingespeichert und generiert im nächsten Menü einen Fehler)
-        -> 9 (Fertig)
-    Ausgegeben wird wieder aus dem obigen Beispiel 0.183824 Promille.
-    Durch den Wegfall der Nachkommastellen entsteht ein geringer Fehler, der allerdings zu tolerieren ist, gemessen daran,
-    dass das Programm nur ein Promilleabschätzer ist.
-
-/////////////////////////////////////////////////////////////////
-Anmerkung: Ich habe alles getestet, was mir bekannt ist und habe es nie aus der Abfrageschleife herausgeschafft, sodass das Programm abgestürzt ist, ohne die "Programm beenden" Funktion zu nutzen.
-Wie beschrieben sind die einzigen Fehler, die mir aufgefallen sind ungenaue Berechnungen aufgrund der Vertauschung von Komma und Punkt.
+    -> 1 (Mann)
+    -> 80,5.5 (Gewicht, ungültige Eingabe, generiert Fehlermeldung durch werfen einer Instanz eines std::invalid_argument und erneute Auswahl des Typs der Person wird gefordert)
+    -> 1 (Mann)
+    -> 80.5.5 (Gewicht, ungültige Eingabe, generiert Fehlermeldung durch werfen einer Instanz eines std::invalid_argument und erneute Auswahl des Typs der Person wird gefordert)
+    -> 1 (Mann)
+    -> 80.5,5 (Gewicht, ungültige Eingabe, generiert Fehlermeldung durch werfen einer Instanz eines std::invalid_argument und erneute Auswahl des Typs der Person wird gefordert)
+    -> 1 (Mann)
+    -> 80,5,5 (Gewicht, ungültige Eingabe, generiert Fehlermeldung durch werfen einer Instanz eines std::invalid_argument und erneute Auswahl des Typs der Person wird gefordert)
+    -> 1 (Mann)
+    -> #80 (Gewicht, ungültige Eingabe, generiert Fehlermeldung durch werfen einer Instanz eines std::invalid_argument und erneute Auswahl des Typs der Person wird gefordert)
+    -> 1 (Mann)
+    -> 80# (Gewicht, ungültige Eingabe, 80 werden abgespeichert und das '#' ignoriert und aus dem Puffer gelöscht, sodass es keine weiteren Eingabe beeinflusst)
+    -> ....
+    Anmerkung:
+    durch Erweiterung der floatEingabePruefen() Methode könnte man nicht nur fehlgesetzte ',' und '.' herausfiltern, sondern auch andere Sonderzeichen/Buchstaben. So würde z.B. 8#9b einfach zu einer 89 konvertiert werden. 
+    Dies würde aber für diese Anwendung den Rahmen sprengen und den Code stark aufblähen, wäre aber an sich einfach implementierbar, falls benötigt.

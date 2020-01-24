@@ -29,7 +29,7 @@ int main(){
                     gewicht = temp;
                 }
                 else{
-                    throw std::runtime_error( "Falsche Eingabe");
+                    throw std::invalid_argument( "Falsche Eingabe");
                 }
             }
             switch(choice0){
@@ -69,7 +69,7 @@ int main(){
                     break;
             }
         }
-        catch(std::runtime_error&  ausnahme){
+        catch(std::invalid_argument&  ausnahme){
             std::cerr << "Fehler! Überprüfe bitte deine Eingabe\n";           
         }
         
