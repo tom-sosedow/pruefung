@@ -1,0 +1,139 @@
+Überprüfen der Formeln:
+
+nach https://www.kenn-dein-limit.de/alkohol/haeufige-fragen/was-ist-die-blutalkoholkonzentration/:
+
+"Sie haben 2 Bier (à 0,3 l, ca. 5 Vol.-%) getrunken und wiegen 70 Kilogramm.
+Frau: (2 x 12 Gramm) / (70 Kilogramm x 0,55) = 0,6 Promille
+Mann: (2 x 12 Gramm) / (70 Kilogramm x 0,68) = 0,5 Promille"
+
+(Benutzereingaben mit "->" markiert)
+
+-> 1 (Mann)
+-> 70 (Gewicht 70kg)
+-> 8 (eigenes Getränk)
+-> 5 (Vol% des Getränks)
+-> 660 (2x330 ml nach Beispiel)
+Ergebnis sollte nach Eingabe der 9 (für Fertig) ca. 0.5 Promille ergeben:
+-> 9 (Fertig)
+erwartete Ausgabe: Du hast ca. 0.5xxxxx Promille Alkohol im Blut.
+Ausgabe: Du hast ca. 0.546219 Promille Alkohol im Blut.
+
+-> 1 (Frau)
+-> 70 (Gewicht 70kg)
+-> 8 (eigenes Getränk)
+-> 5 (Vol% des Getränks)
+-> 660 (2x330 ml nach Beispiel)
+Ergebnis sollte nach Eingabe der 9 (für Fertig) ca. 0.6 Promille ergeben:
+-> 9 (Fertig)
+erwartete Ausgabe: Du hast ca. 0.6xxxxx Promille Alkohol im Blut.
+Ausgabe: Du hast ca. 0.675325 Promille Alkohol im Blut.
+
+-> 1 (Kind)
+-> 70 (Gewicht 40kg)
+-> 8 (eigenes Getränk)
+-> 5 (Vol% des Getränks)
+-> 660 (2x330 ml nach Beispiel)
+Ergebnis sollte nach Eingabe der 9 (für Fertig) ca. (2*12)/(40* 0.75)=0.8 Promille ergeben:
+-> 9 (Fertig)
+erwartete Ausgabe: Du hast ca. 0.8xxxxx Promille Alkohol im Blut.
+Ausgabe: Du hast ca. 0.866667 Promille Alkohol im Blut.
+
+Beispiele aus https://www.bernd-leitenberger.de/volumenprozent.shtml
+wurden alle getestet und stimmen grob überein, da dort andere Faktoren für den Körperwasseranteil benutzt wurden, als in der Aufgabenstellung verlangt.
+
+//////////////////////////////////////////////////////////////
+Überprüfen der Warnmeldung:
+Beispiel: 80kg schwerer Mann der 50 Gläser Rum á 20ml bzw 2cl getrunken hat.
+Warnmeldung ab 3 Promille.
+
+-> 1 (Mann)
+-> 70 (Gewicht 80kg)
+-> 7 (Rum)
+-> 50 (50 Gläser á 20ml)
+Ergebnis sollte nach Eingabe der 9 (für Fertig) ca. 10 Promille ergeben:
+-> 9 (Fertig)
+Warnmeldung wird (unter Ubuntu 19.10) korrekt in Rot ausgegeben 
+und der Promillewert von 10.1103 entspricht dem erwarteten Wert.
+
+////////////////////////////////////////////////////////////////
+Fehlerhafte Eingaben abfangen:
+
+1. Buchstaben anstelle von Zahlen:
+    Start des Programms
+    -> b (Menüauswahl, ungültig)
+    erwartete Aktion: Fehlermeldung ausgeben und Nutzer erneut auswählen lassen.
+    erwartete Aktion trifft ein
+
+    -> 1 (Mann)
+    -> b (Körpergewicht, ungültig)
+    erwartete Aktion: Fehlermeldung ausgeben und Nutzer erneut Geschlecht/Typ auswählen lassen.
+    erwartete Aktion trifft ein
+
+    -> 1 (Mann)
+    -> 80 (80kg Körpergewicht)
+    -> b (Menüauswahl Getränk, ungültig)
+    erwartete Aktion: Fehlermeldung ausgeben und Nutzer Getränk erneut auswählen lassen.
+    erwartete Aktion trifft ein
+
+    -> 1 (Mann)
+    -> 80 (Körpergewicht)
+    -> 1 (Getränk: Bier)
+    -> b (Menge, ungültig)
+    erwartete Aktion: Fehlermeldung ausgeben und Nutzer Getränk erneut auswählen lassen.
+    erwartete Aktion trifft ein
+
+    -> 1 (Mann)
+    -> 80 (Körpergewicht)
+    -> 1 (Getränk: Bier)
+    -> 1 (Menge, Alkoholmenge wird korrekt dem Nutzer hinzugefügt)
+    -> b (Menüauswahl Getränk, ungültig)
+    erwartete Aktion: Fehlermeldung ausgeben und Nutzer Getränk erneut auswählen lassen. Getränkeliste des Nutezrs sollte nicht gelöscht werden.
+    -> 9
+    Ausgabe von 0.18 Promille ist korrekt.
+    erwartete Aktion trifft ein
+    Alle Menüs der Getranke 1-7 haben denselben Code, daher können überall nur dieselben Fehler auftreten. 
+
+    -> 1 (Mann)
+    -> 80 (Körpergewicht)
+    -> 8 (eigenes Getränk)
+    -> b (Volumenprozent, ungültige Eingabe)
+    erwartete Aktion: Fehlermeldung ausgeben und Nutzer neues Getränk auswählen lassen. "Fehlerhaftes" Getränk wird nicht der Alkoholsumme des Nutzers aufaddiert. 
+    erwartete Aktion trifft ein
+
+    -> 1 (Mann)
+    -> 80 (Körpergewicht)
+    -> 8 (eigenes Getränk)
+    -> 5 (Volumenprozent)
+    -> b (Menge, ungültige Eingabe)
+    erwartete Aktion: Fehlermeldung ausgeben und Nutzer neues Getränk auswählen lassen. "Fehlerhaftes" Getränk wird nicht der Alkoholsumme des Nutzers aufaddiert. 
+    erwartete Aktion trifft ein
+
+2. Kommazahlen mit ',' anstelle eines Punktes eingeben:
+    Erwartung: std::cin liest bis zum Komma, erkennt dieses als nicht-Teil der erwarteten Integer/double Zahl
+    und liest speichert nur den Wert vor dem Komma ein. Der Rest verbleibt im Buffer und generiert bei der nächsten Eingabe einen Fehler.
+    
+    -> 1 (Mann)
+    -> 80,5 (Körpergewicht, ungültig, Gewicht des Nutzers wird als 80 abgespeichert und generiert im Getränkemenü einen Fehler)
+    -> 1 (Bier) 
+    -> 1 (Menge, 1 Glas á 250ml)
+    -> 9 (Fertig)
+    Ausgabe sollten für einen 80kg schweren Mann stimmen:
+    Ausgabe: Du hast ca. 0.183824 Promille Alkohol im Blut. //Korrekt
+
+    Da bei jeder Eingabe erneut geprüft wird, ob das eingelesene Korrekt ist, wird die Aktion im nächsten Schritt nach der 
+    fehlerhaften Eingabe unterbrochen. Falls es die letzte Eingabe im Menübaum ist, so wird mit der Zahl vor dem Komma als Ganzzahl weiter gerechnet. 
+    Beispiel 1: siehe vorheriges Beispiel.
+    Beispiel 2:
+        -> 1 (Mann)
+        -> 80 (Gewicht)
+        -> 8 (eigenes Getränk)
+        -> 5 (Vol% eines Bieres)
+        -> 250,9 (Menge, ungültig, es wird 250 als Menge eingespeichert und generiert im nächsten Menü einen Fehler)
+        -> 9 (Fertig)
+    Ausgegeben wird wieder aus dem obigen Beispiel 0.183824 Promille.
+    Durch den Wegfall der Nachkommastellen entsteht ein geringer Fehler, der allerdings zu tolerieren ist, gemessen daran,
+    dass das Programm nur ein Promilleabschätzer ist.
+
+/////////////////////////////////////////////////////////////////
+Anmerkung: Ich habe alles getestet, was mir bekannt ist und habe es nie aus der Abfrageschleife herausgeschafft, sodass das Programm abgestürzt ist, ohne die "Programm beenden" Funktion zu nutzen.
+Wie beschrieben sind die einzigen Fehler, die mir aufgefallen sind ungenaue Berechnungen aufgrund der Vertauschung von Komma und Punkt.
