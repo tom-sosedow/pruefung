@@ -32,11 +32,20 @@ class Person {
     void drinksAbfragen(Person &a);
 
     /**
-     * Prüft eine Eingabe vom Nutzer, ob es dem erwarteten Datentyp entspricht. Falls nicht, wirft es eine Ausnahme, beendet die Methode und der Nutzer startet wieder im vorherigen Menü
+     * Prüft eine Eingabe vom Nutzer. Richtig formatierte Eingaben werden zurückgegeben und bei Zahlen, bei denen nur ein Komma 
+     * anstelle eines Punktes verwendet wurde, wird das Komma durch einen Punkt für die Konvertierung zu float ausgetauscht.
      * 
-     * @returns Eingabe im Falle einer korrekten Eingabe
+     * @returns korrekte Eingaben (float) oder wirft einen runtime_error bei falschen Formatierungen (Sonderzeichen, mehr als ein Punkt/Komma)
      */
-    float eingabePruefen() const;
+    static float floatEingabePruefen();
+    /**
+     * Prüft eine Eingabe vom Nutzer. Richtig formatierte Eingaben werden zurückgegeben und bei Zahlen, bei denen nur ein Komma 
+     * anstelle eines Punktes verwendet wurde, wird das Komma durch einen Punkt für die Konvertierung zu float ausgetauscht.
+     * 
+     * @param i Obergrenze für Auswahl.
+     * @returns korrekte Eingaben (int) oder wirft einen runtime_error bei falschen Formatierungen (Sonderzeichen) oder zu großer Zahl.
+     */
+    static int intEingabePruefen(int i);
 
   protected:
     float gewicht; //!< Gewicht des Nutzers in kg

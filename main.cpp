@@ -16,28 +16,22 @@ int main(){
     int choice0; // Auswahlvariable, die vom Nutzer anhand der Menüoptionen gesetzt wird und mit switch statements überprüft wird
     int exit = 0; // Exitvariable um das Programm auf Wunsch des Nutzers zu terminieren. Das Programm läuft solange in einem Looop, bis der Nutezr das Programm beenden möchte, damit exit = 1 setzt und die Bedingung für die while Schleife ncith mehr erfüllt ist.
     float gewicht; // Gewicht des Nutzers, welches an die Funktionen zur Berechnung weietrer Werte übergeben wird
-    //jemand war hier
-    std::cout << "Note: Wenn du Kommazahlen eingeben möchtest, benutze bitte einen Punkt (.) anstelle eines Kommas (,).\n";
+    float temp;
 
     while(exit != 1){
-        
         try{
             std::cout << "Es handelt sich um ein/e/n: \n\t1) Mann \n\t2) Frau\n\t3) Kind \n\t4) Programm beenden\n\t";
-            if (!(std::cin >> choice0) || choice0 > 4 || choice0 < 1){
-                std::cin.clear();
-                std::cin.ignore(INT8_MAX, '\n');
-                throw std::runtime_error( "Falsche Eingabe");
-            }
+            choice0 = Person::intEingabePruefen(4);
             if(choice0 != 4){
                 std::cout << "Dein Körpergewicht vor dem Konsum: ";
-                if (!(std::cin >> gewicht) || gewicht <= 0 || gewicht > 1000){
-                    std::cin.clear();
-                    std::cin.ignore(INT8_MAX, '\n');
+                temp = Person::floatEingabePruefen();
+                if (temp >= 0){
+                    gewicht = temp;
+                }
+                else{
                     throw std::runtime_error( "Falsche Eingabe");
-                    
                 }
             }
-        
             switch(choice0){
                 case 1:{
                     Mann Nutzer(gewicht);
