@@ -15,8 +15,8 @@ void warnmeldung();
 int main(){
     int choice0; // Auswahlvariable, die vom Nutzer anhand der Menüoptionen gesetzt wird und mit switch statements überprüft wird
     int exit = 0; // Exitvariable um das Programm auf Wunsch des Nutzers zu terminieren. Das Programm läuft solange in einem Looop, bis der Nutezr das Programm beenden möchte, damit exit = 1 setzt und die Bedingung für die while Schleife ncith mehr erfüllt ist.
-    float gewicht; // Gewicht des Nutzers, welches an die Funktionen zur Berechnung weietrer Werte übergeben wird
-    float temp;
+    float gewicht; // Gewicht des Nutzers, welches an die Funktionen zur Berechnung weiterer Werte übergeben wird
+    float temp; // temporärer Speicherort für das überprüfte Gewicht
 
     while(exit != 1){
         try{
@@ -73,7 +73,7 @@ int main(){
             std::cerr << "Fehler! Überprüfe bitte deine Eingabe\n";           
         }
         
-   }
+    }
 
     
 
