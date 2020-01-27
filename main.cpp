@@ -65,14 +65,16 @@ int main(){
                     exit = 1;
                     break;
                 default:
-                    std::cout << "Fehler. Falsche Eingabe. Bitte nur Zahlen von 1-4 eingeben";
+                    std::cerr << "Fehler. Falsche Eingabe. Bitte nur Zahlen von 1-4 eingeben";
                     break;
             }
         }
         catch(std::invalid_argument&  ausnahme){
-            std::cerr << "Fehler! Überprüfe bitte deine Eingabe\n";           
+            std::cerr << "Fehler! Überprüfe bitte deine Eingabe.\n";           
         }
-        
+        catch(std::out_of_range& oor){
+            std::cerr << "Fehler! Deine Eingabe ist zu groß.\n";           
+        }
     }
 
     
