@@ -13,7 +13,7 @@ class Getraenk {
      * @param prozent Volumenprozent des Alkohols im Getränk
      * @param volumen Größe einer "Einheit", beispielsweise einer Dose oder eines Shot-Glässchens
      */
-    Getraenk(float prozent, int volumen);
+    Getraenk(float prozent, float volumen);
     
     /**
      * @returns Masse des Alkohols im gewählten Getränk in g

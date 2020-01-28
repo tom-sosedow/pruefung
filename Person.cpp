@@ -1,13 +1,12 @@
 #include "Person.hpp"
-//#include "Ausnahmen.hpp"
 #include <iostream>
 void Person::drinkHinzufuegen(Getraenk &a, float menge){
-    
+
   alkoholgetrunken = alkoholgetrunken + (a.getAlkoholMasse() * menge);
 }
 
 void Person::drinksAbfragen(Person &a){
-  
+
   Getraenk Bier(5, 250);
   Getraenk SektWein(11, 250);
   Getraenk Schnaps(38, 20);
@@ -19,7 +18,7 @@ void Person::drinksAbfragen(Person &a){
   float volprozent;
   float menge;
   int exit = 0;
-  
+
   while(exit != 1){
     try{
       std::cout << "\nWas hast du alles getrunken?\n\t1) Bier\t\t\t(05 VOL%, 250ml)\n\t2) Sekt/Wein\t\t(11 VOL%, 250ml)\n\t3) Schnaps\t\t(38 VOL%, 20ml)\n\t4) Likör\t\t(20 VOL%, 20ml)\n\t5) Cidre/Apfelwein\t(04 VOL%, 250ml)\n\t6) Wodka/Tequila\t(40 VOL%, 20ml)\n\t7) Original Rum\t\t(70 VOL%, 20ml)\n\t8) Eigenes Getränk\n\t9) Fertig\n\t";
@@ -96,11 +95,11 @@ void Person::drinksAbfragen(Person &a){
       }
     }
     catch(std::invalid_argument& ausnahme){
-        std::cerr << "Fehler! Überprüfe bitte deine Eingabe.\n";          
+        std::cerr << "Fehler! Überprüfe bitte deine Eingabe.\n";
     }
-    
+
   }
-  
+
 }
 
 int Person::intEingabePruefen(int i){
@@ -126,7 +125,7 @@ float Person::floatEingabePruefen(){
     if(stelle != std::string::npos){
         std::cin.clear();
         std::cin.ignore(INT8_MAX, '\n');
-        throw std::invalid_argument("Falsche Eingabe");   
+        throw std::invalid_argument("Falsche Eingabe");
     }
     else if(eingabe.find(".", stelle+1) != std::string::npos){
       std::cin.clear();
@@ -151,7 +150,7 @@ float Person::floatEingabePruefen(){
       if(stelle != std::string::npos){
         std::cin.clear();
         std::cin.ignore(INT8_MAX, '\n');
-        throw std::invalid_argument("Falsche Eingabe");   
+        throw std::invalid_argument("Falsche Eingabe");
       }
       else if(eingabe.find(",", stelle+1) != std::string::npos){
         std::cin.clear();
@@ -178,5 +177,5 @@ float Person::floatEingabePruefen(){
         }
       }
   }
-  
+
 }

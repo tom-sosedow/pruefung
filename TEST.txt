@@ -43,7 +43,7 @@ wurden alle getestet und stimmen grob überein, da dort andere Faktoren für den
 
 //////////////////////////////////////////////////////////////
 Überprüfen der Warnmeldung:
-Beispiel: 80kg schwerer Mann der 50 Gläser Rum á 20ml bzw 2cl getrunken hat.
+Beispiel: 80kg schwerer Mann der 50 Gläser Rum á 20ml bzw. 2cl getrunken hat.
 Warnmeldung ab 3 Promille.
 
 -> 1 (Mann)
@@ -52,7 +52,7 @@ Warnmeldung ab 3 Promille.
 -> 50 (50 Gläser á 20ml)
 Ergebnis sollte nach Eingabe der 9 (für Fertig) ca. 10 Promille ergeben:
 -> 9 (Fertig)
-Warnmeldung wird (unter Ubuntu 19.10) korrekt in Rot ausgegeben 
+Warnmeldung wird (unter Ubuntu 19.10) korrekt in Rot ausgegeben
 und der Promillewert von 10.1103 entspricht dem erwarteten Wert.
 
 ////////////////////////////////////////////////////////////////
@@ -91,13 +91,13 @@ Fehlerhafte Eingaben abfangen:
     -> 9
     Ausgabe von 0.18 Promille ist korrekt.
     erwartete Aktion trifft ein
-    Alle Menüs der Getranke 1-7 haben denselben Code, daher können überall nur dieselben Fehler auftreten. 
+    Alle Menüs der Getränke 1-7 haben denselben Code, daher können überall nur dieselben Fehler auftreten.
 
     -> 1 (Mann)
     -> 80 (Körpergewicht)
     -> 8 (eigenes Getränk)
     -> b (Volumenprozent, ungültige Eingabe)
-    erwartete Aktion: Fehlermeldung ausgeben und Nutzer neues Getränk auswählen lassen. "Fehlerhaftes" Getränk wird nicht der Alkoholsumme des Nutzers aufaddiert. 
+    erwartete Aktion: Fehlermeldung ausgeben und Nutzer neues Getränk auswählen lassen. "Fehlerhaftes" Getränk wird nicht der Alkoholsumme des Nutzers aufaddiert.
     erwartete Aktion trifft ein
 
     -> 1 (Mann)
@@ -105,16 +105,16 @@ Fehlerhafte Eingaben abfangen:
     -> 8 (eigenes Getränk)
     -> 5 (Volumenprozent)
     -> b (Menge, ungültige Eingabe)
-    erwartete Aktion: Fehlermeldung ausgeben und Nutzer neues Getränk auswählen lassen. "Fehlerhaftes" Getränk wird nicht der Alkoholsumme des Nutzers aufaddiert. 
+    erwartete Aktion: Fehlermeldung ausgeben und Nutzer neues Getränk auswählen lassen. "Fehlerhaftes" Getränk wird nicht der Alkoholsumme des Nutzers aufaddiert.
     erwartete Aktion trifft ein
 
 2. Kommazahlen mit ',' anstelle eines Punktes '.' eingeben und Mischung mit anderen Sonderzeichen:
-    Erwartung: Kommazahlen , die nicht mit einem Punkt '.', sondern mit einem Komma ',' eingegeben werden, werden in das korekkte Format konvertiert. Falls mehr als ein Komma/Punkt 
+    Erwartung: Kommazahlen , die nicht mit einem Punkt '.', sondern mit einem Komma ',' eingegeben werden, werden in das korrekte Format konvertiert. Falls mehr als ein Komma/Punkt
     eingegeben werden, führt es zu einer Fehlermeldung durch werfen einer Instanz eines std::invalid_argument und der Nutzer startet im vorherigen Auswahlmenü neu.
-    
+
     -> 1,5 (Mann, ungültige Eingabe, 1 wird angenommen und der Rest (,5) aus dem Puffer gelöscht, sodass es keine weiteren Menüs beeinflusst)
     -> 80,5 (Körpergewicht, ungültige Formatierung wird im Hintergrund berichtigt und als 80.5 abgespeichert)
-    -> 1 (Bier) 
+    -> 1 (Bier)
     -> 2,5 (Menge, 1 Glas á 250ml)
     -> 9 (Fertig)
     Ausgabe zeigt korrekten Blutalkoholwert an.
@@ -133,5 +133,12 @@ Fehlerhafte Eingaben abfangen:
     -> 80# (Gewicht, ungültige Eingabe, 80 werden abgespeichert und das '#' ignoriert und aus dem Puffer gelöscht, sodass es keine weiteren Eingabe beeinflusst)
     -> ....
     Anmerkung:
-    durch Erweiterung der floatEingabePruefen() Methode könnte man nicht nur fehlgesetzte ',' und '.' herausfiltern, sondern auch andere Sonderzeichen/Buchstaben. So würde z.B. 8#9b einfach zu einer 89 konvertiert werden. 
+    durch Erweiterung der floatEingabePruefen() Methode könnte man nicht nur fehlgesetzte ',' und '.' herausfiltern, sondern auch andere Sonderzeichen/Buchstaben. So würde z.B. 8#9b einfach zu einer 89 konvertiert werden.
     Dies würde aber für diese Anwendung den Rahmen sprengen und den Code stark aufblähen, wäre aber an sich einfach implementierbar, falls benötigt.
+
+3. Zu große Zahlen eingegeben
+    Falls der Nutzer eine zu große Zahl eingibt, z.B. beim Gewicht oder der Menge, wirft die Funktion std::stof einen std::out_of_range, welcher am Ende des Hauptprogramms gefangen wird.
+    Test:
+    -> 1 (Mann)
+    -> 800000000000000000000000000000000000000000000000000000
+    Erwartete Fehlermeldung wird ausgegeben und der Nutzer muss erneut im Startmenü anfangen.
