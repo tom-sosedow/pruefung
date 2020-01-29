@@ -6,7 +6,7 @@
 #include "Frau.hpp"
 #include "Kind.hpp"
 #include "Getraenk.hpp"
-//HIer war jemand
+
 /**
  * Gibt eine rote Warnmeldung aus, dass der Nutzer möglicherweie in Lebensgefahr schwebt.
  */
