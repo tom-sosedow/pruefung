@@ -2,6 +2,7 @@
 #define BOLDRED "\033[1m\033[31m" // ANSI-ESCAPE-CODE für rote farbe und fette Schrift
 
 #include <iostream>
+#include <stdexcept>
 #include "Mann.hpp"
 #include "Frau.hpp"
 #include "Kind.hpp"

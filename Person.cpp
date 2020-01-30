@@ -1,5 +1,6 @@
 #include "Person.hpp"
 #include <iostream>
+#include <stdexcept>
 void Person::drinkHinzufuegen(Getraenk &a, float menge){
 
   alkoholgetrunken = alkoholgetrunken + (a.getAlkoholMasse() * menge);
