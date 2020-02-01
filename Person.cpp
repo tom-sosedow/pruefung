@@ -87,7 +87,7 @@ void Person::drinksAbfragen(Person &a){
         }
           break;
         case 9:
-          std::cout << "Ok.\n";
+          std::cout << "Promille werden berechnet...\n";
           exit = 1;
           break;
         default:

@@ -1,5 +1,5 @@
-#define RESET "\033[0m" // ANSI-ESCAPE-CODE für farbe zurücksetzen
-#define BOLDRED "\033[1m\033[31m" // ANSI-ESCAPE-CODE für rote farbe und fette Schrift
+#define RESET "\033[0m" // ANSI-ESCAPE-CODE für Farbe zurücksetzen
+#define BOLDRED "\033[1m\033[31m" // ANSI-ESCAPE-CODE für rote Farbe und fette Schrift
 
 #include <iostream>
 #include <stdexcept>
@@ -37,28 +37,37 @@ int main(){
                 case 1:{
                     Mann Nutzer(gewicht);
                     Nutzer.drinksAbfragen(Nutzer);
-                    std::cout << "Du hast ca. " << Nutzer.berechnePromille() << " Promille Alkohol im Blut." << std::endl;
+                    temp = Nutzer.berechnePromille();
+                    std::cout << "_________________________________________________________________\n\n";
+                    std::cout << ">>Du hast ca. " << temp << " Promille Alkohol im Blut.\n";
                     if(Nutzer.berechnePromille() > 3.0){
                         warnmeldung();
                     }
+                    std::cout << "_________________________________________________________________\n\n";
                 }
                     break;
                 case 2:{
                     Frau Nutzer(gewicht);
                     Nutzer.drinksAbfragen(Nutzer);
-                    std::cout << "Du hast ca. " << Nutzer.berechnePromille() << " Promille Alkohol im Blut." << std::endl;
+                    temp = Nutzer.berechnePromille();
+                    std::cout << "_________________________________________________________________\n\n";
+                    std::cout << ">>Du hast ca. " << temp << " Promille Alkohol im Blut.\n";
                     if(Nutzer.berechnePromille() > 3.0){
                         warnmeldung();
                     }
+                    std::cout << "_________________________________________________________________\n\n";
                 }
                     break;
                 case 3:{
                     Kind Nutzer(gewicht);
                     Nutzer.drinksAbfragen(Nutzer);
-                    std::cout << "Du hast ca. " << Nutzer.berechnePromille() << " Promille Alkohol im Blut." << std::endl;
+                    temp = Nutzer.berechnePromille();
+                    std::cout << "_________________________________________________________________\n\n";
+                    std::cout << ">>Du hast ca. " << temp << " Promille Alkohol im Blut.\n";
                     if(Nutzer.berechnePromille() > 3.0){
                         warnmeldung();
                     }
+                    std::cout << "_________________________________________________________________\n\n";
                 }
                     break;
                 case 4:
@@ -74,7 +83,10 @@ int main(){
             std::cerr << "Fehler! Überprüfe bitte deine Eingabe.\n";           
         }
         catch(std::out_of_range& oor){
-            std::cerr << "Fehler! Deine Eingabe ist zu groß.\n";           
+            std::cerr << "Fehler! Deine Eingabe(n) ist/sind zu groß.\n";           
+        }
+        catch(std::exception& alles){
+            std::cerr << "Ups, da ist etwas schief gelaufen!\n";
         }
     }
 
@@ -83,5 +95,5 @@ int main(){
 }
 
 void warnmeldung(){
-    std::cout << BOLDRED << "\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\nACHTUNG! Suche schnellstens einen Arzt auf. Ab 3.5 Promille \nbesteht bei den meisten Menschen Lebensgefahr!\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" << RESET << std::endl;
+    std::cout << BOLDRED << "\n\a!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\nACHTUNG! Suche schnellstens einen Arzt auf. Ab 3.5 Promille \nbesteht bei den meisten Menschen Lebensgefahr!\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" << RESET << std::endl;
 }

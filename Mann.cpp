@@ -1,8 +1,14 @@
 #include "Mann.hpp"
-
+#include <stdexcept>
 Mann::Mann(float a){
   gewicht = a;
 }
 float Mann::berechnePromille(){
-  return (alkoholgetrunken)/(gewicht * 0.68);
+  float sum = (alkoholgetrunken)/(gewicht * 0.68);
+  if(sum < 0){
+    throw std::out_of_range("Zu große Eingabe");
+  }
+  else{
+    return sum;
+  }
 }
