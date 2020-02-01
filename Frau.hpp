@@ -8,18 +8,19 @@
 class Frau : public Person {
   public:
     /**
-     * Erstellt ein Objekt vom Typ Frau, mit einem vom Nutzer eingegebenen Gewicht
+     * Erstellt ein Objekt vom Typ Frau
      * @see class Mann
      * @see class Frau
      * @param gewicht Gewicht der Person
      */
-    Frau(float);
+    Frau(float gewicht);
 
     /**
      * Berechnet den Masseanteil des Alkohols im Körper unter Berücksichtigung des unterschiedlichen Körperwasseranteils zwischen Mann, Frau und Kind
+     * Wirft out_of_range wenn die Alkoholsumme zu groß für den Datentyp float (ca. 3.4E38) wird.
      * 
      * @see class Person
-     * @returns Masseanteild es Alkohols im Körper in Promille
+     * @returns Masseanteil des Alkohols im Körper in Promille
      */
     float berechnePromille() override;
 };

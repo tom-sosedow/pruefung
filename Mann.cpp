@@ -1,5 +1,6 @@
 #include "Mann.hpp"
 #include <stdexcept>
+
 Mann::Mann(float a){
   gewicht = a;
 }

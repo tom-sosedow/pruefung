@@ -2,7 +2,7 @@
 #include "Getraenk.hpp"
 
 /**
- * Obertyp für einzelne Personentypen: Frau, Mann , Kind
+ * Obertyp für einzelne Personentypen, z.B.: Frau, Mann , Kind
  */
 
 class Person {
@@ -12,7 +12,6 @@ class Person {
      * 
      * @param a vom Nutzer angegebenes Getränk
      * @param menge vom Nutzer angegebene Menge, wieviel er von der festen Menge des Getränks getrunken hat
-     * @returns nichts
      */
     virtual void drinkHinzufuegen(Getraenk &a, float menge);
 
@@ -49,5 +48,5 @@ class Person {
 
   protected:
     float gewicht; //!< Gewicht des Nutzers in kg
-    int alkoholgetrunken = 0; //!< Menge des getrunkenen Alkohols in g
+    float alkoholgetrunken = 0; //!< Menge des getrunkenen Alkohols in g
 };
