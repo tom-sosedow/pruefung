@@ -61,52 +61,52 @@ Fehlerhafte Eingaben abfangen:
 1. Buchstaben anstelle von Zahlen:
     Start des Programms
     -> b (Menüauswahl, ungültig)
-    erwartete Aktion: Fehlermeldung ausgeben und Nutzer erneut auswählen lassen.
-    erwartete Aktion trifft ein
+    erwartetes Ereignis: Fehlermeldung ausgeben und Nutzer erneut auswählen lassen.
+    erwartetes Ereignis trifft ein
 
     -> 1 (Mann)
     -> b (Körpergewicht, ungültig)
-    erwartete Aktion: Fehlermeldung ausgeben und Nutzer erneut Geschlecht/Typ auswählen lassen.
-    erwartete Aktion trifft ein
+    erwartetes Ereignis: Fehlermeldung ausgeben und Nutzer erneut Geschlecht/Typ auswählen lassen.
+    erwartetes Ereignis trifft ein
 
     -> 1 (Mann)
     -> 80 (80kg Körpergewicht)
     -> b (Menüauswahl Getränk, ungültig)
-    erwartete Aktion: Fehlermeldung ausgeben und Nutzer Getränk erneut auswählen lassen.
-    erwartete Aktion trifft ein
+    erwartetes Ereignis: Fehlermeldung ausgeben und Nutzer Getränk erneut auswählen lassen.
+    erwartetes Ereignis trifft ein
 
     -> 1 (Mann)
     -> 80 (Körpergewicht)
     -> 1 (Getränk: Bier)
     -> b (Menge, ungültig)
-    erwartete Aktion: Fehlermeldung ausgeben und Nutzer Getränk erneut auswählen lassen.
-    erwartete Aktion trifft ein
+    erwartetes Ereignis: Fehlermeldung ausgeben und Nutzer Getränk erneut auswählen lassen.
+    erwartetes Ereignis trifft ein
 
     -> 1 (Mann)
     -> 80 (Körpergewicht)
     -> 1 (Getränk: Bier)
     -> 1 (Menge, Alkoholmenge wird korrekt dem Nutzer hinzugefügt)
     -> b (Menüauswahl Getränk, ungültig)
-    erwartete Aktion: Fehlermeldung ausgeben und Nutzer Getränk erneut auswählen lassen. Getränkeliste des Nutezrs sollte nicht gelöscht werden.
+    erwartetes Ereignis: Fehlermeldung ausgeben und Nutzer Getränk erneut auswählen lassen. Getränkeliste des Nutezrs sollte nicht gelöscht werden.
     -> 9
     Ausgabe von 0.18 Promille ist korrekt.
-    erwartete Aktion trifft ein
+    erwartetes Ereignis trifft ein
     Alle Menüs der Getränke 1-7 haben denselben Code, daher können überall nur dieselben Fehler auftreten.
 
     -> 1 (Mann)
     -> 80 (Körpergewicht)
     -> 8 (eigenes Getränk)
     -> b (Volumenprozent, ungültige Eingabe)
-    erwartete Aktion: Fehlermeldung ausgeben und Nutzer neues Getränk auswählen lassen. "Fehlerhaftes" Getränk wird nicht der Alkoholsumme des Nutzers aufaddiert.
-    erwartete Aktion trifft ein
+    erwartetes Ereignis: Fehlermeldung ausgeben und Nutzer neues Getränk auswählen lassen. "Fehlerhaftes" Getränk wird nicht der Alkoholsumme des Nutzers aufaddiert.
+    erwartetes Ereignis trifft ein
 
     -> 1 (Mann)
     -> 80 (Körpergewicht)
     -> 8 (eigenes Getränk)
     -> 5 (Volumenprozent)
     -> b (Menge, ungültige Eingabe)
-    erwartete Aktion: Fehlermeldung ausgeben und Nutzer neues Getränk auswählen lassen. "Fehlerhaftes" Getränk wird nicht der Alkoholsumme des Nutzers aufaddiert.
-    erwartete Aktion trifft ein
+    erwartetes Ereignis: Fehlermeldung ausgeben und Nutzer neues Getränk auswählen lassen. "Fehlerhaftes" Getränk wird nicht der Alkoholsumme des Nutzers aufaddiert.
+    erwartetes Ereignis trifft ein
 
 2. Kommazahlen mit ',' anstelle eines Punktes '.' eingeben und Mischung mit anderen Sonderzeichen:
     Erwartung: Kommazahlen , die nicht mit einem Punkt '.', sondern mit einem Komma ',' eingegeben werden, werden in das korrekte Format konvertiert. Falls mehr als ein Komma/Punkt
@@ -131,7 +131,7 @@ Fehlerhafte Eingaben abfangen:
     -> #80 (Gewicht, ungültige Eingabe, generiert Fehlermeldung durch werfen einer Instanz eines std::invalid_argument und erneute Auswahl des Typs der Person wird gefordert)
     -> 1 (Mann)
     -> 80# (Gewicht, ungültige Eingabe, 80 werden abgespeichert und das '#' ignoriert und aus dem Puffer gelöscht, sodass es keine weiteren Eingabe beeinflusst)
-    -> ....
+    ....
     Anmerkung:
     durch Erweiterung der floatEingabePruefen() Methode könnte man nicht nur fehlgesetzte ',' und '.' herausfiltern, sondern auch andere Sonderzeichen/Buchstaben. So würde z.B. 8#9b einfach zu einer 89 konvertiert werden.
     Dies würde aber für diese Anwendung den Rahmen sprengen und den Code stark aufblähen, wäre aber an sich einfach implementierbar, falls benötigt.

@@ -6,6 +6,6 @@ Getraenk::Getraenk(float prozent, float volumen){
     volumenprozent = prozent;
 }
 
-int Getraenk::getAlkoholMasse(){
+float Getraenk::getAlkoholMasse(){
     return AlkoholMasse;
 }

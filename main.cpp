@@ -89,9 +89,6 @@ int main(){
             std::cerr << "Ups, da ist etwas schief gelaufen!\n";
         }
     }
-
-    
-
 }
 
 void warnmeldung(){
