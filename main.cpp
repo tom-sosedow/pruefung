@@ -8,6 +8,10 @@
 #include "Kind.hpp"
 #include "Getraenk.hpp"
 
+
+// cd "/home/tom/AOP/GIt/pruefung/" && g++ main.cpp Getraenk.cpp Frau.cpp Mann.cpp Kind.cpp Person.cpp -o a.out && "/home/tom/AOP/GIt/pruefung/"a.out
+// g++ -Wall -std=c++14 main.cpp Person.cpp Getraenk.cpp Frau.cpp Mann.cpp Kind.cpp && ./a.out 
+
 /**
  * Gibt eine rote Warnmeldung aus, dass der Nutzer möglicherweie in Lebensgefahr schwebt.
  */

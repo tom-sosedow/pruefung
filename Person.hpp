@@ -13,7 +13,7 @@ class Person {
      * @param a Getränk dessen spezifische Alkoholmasse hinzugefügt werden soll
      * @param menge wie oft eine Einheit (mit vorbestimmter Menge) des Getränks a getrunken wurde
      */
-    virtual void drinkHinzufuegen(Getraenk &a, float menge);
+    virtual void drinkHinzufuegen(const Getraenk a, float menge);
 
     /**
      * Berechnet mit der Formel [Alkoholmasse in g/Körpergewicht in kg * (Körperwassernteilsfaktor (Mann:0.68, Frau:0.55, Kind:0.75))] und gibt die Promille der Person zurück

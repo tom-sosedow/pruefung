@@ -1,7 +1,7 @@
 #include "Person.hpp"
 #include <iostream>
 #include <stdexcept>
-void Person::drinkHinzufuegen(Getraenk &a, float menge){
+void Person::drinkHinzufuegen(Getraenk a, float menge){
 
   alkoholgetrunken = alkoholgetrunken + (a.getAlkoholMasse() * menge);
 }
@@ -25,12 +25,12 @@ void Person::drinksAbfragen(Person &a){
       std::cout << "\nWas hast du alles getrunken?\n\t1) Bier\t\t\t(05 VOL%, 250ml)\n\t2) Sekt/Wein\t\t(11 VOL%, 250ml)\n\t3) Schnaps\t\t(38 VOL%, 20ml)\n\t4) Likör\t\t(20 VOL%, 20ml)\n\t5) Cidre/Apfelwein\t(04 VOL%, 250ml)\n\t6) Wodka/Tequila\t(40 VOL%, 20ml)\n\t7) Original Rum\t\t(70 VOL%, 20ml)\n\t8) Eigenes Getränk\n\t9) Fertig\n\t";
       choice1 = intEingabePruefen(9);
       switch(choice1){
-        case 1:{
+        case 1:
           std::cout << "Wieviele Gläser á 250ml hast du getrunken?\n";
           menge = floatEingabePruefen();
           a.drinkHinzufuegen(Bier, menge);
           break;
-        }
+        
         case 2:{
           std::cout << "Wieviele Gläser á 250ml hast du getrunken?\n";
           menge = floatEingabePruefen();
@@ -98,9 +98,7 @@ void Person::drinksAbfragen(Person &a){
     catch(std::invalid_argument& ausnahme){
         std::cerr << "Fehler! Überprüfe bitte deine Eingabe.\n";
     }
-
   }
-
 }
 
 int Person::intEingabePruefen(int i){
