@@ -8,13 +8,13 @@ void Person::drinkHinzufuegen(Getraenk a, float menge){
 
 void Person::drinksAbfragen(Person &a){
 
-  Getraenk Bier(5, 250);
-  Getraenk SektWein(11, 250);
-  Getraenk Schnaps(38, 20);
-  Getraenk Likoer(20, 20);
-  Getraenk Cidre(4, 250);
-  Getraenk WodkaTequila(40, 20);
-  Getraenk Rum(70, 20);
+  const Getraenk Bier(5, 250);
+  const Getraenk SektWein(11, 250);
+  const Getraenk Schnaps(38, 20);
+  const Getraenk Likoer(20, 20);
+  const Getraenk Cidre(4, 250);
+  const Getraenk WodkaTequila(40, 20);
+  const Getraenk Rum(70, 20);
   int choice1;
   float volprozent;
   float menge;

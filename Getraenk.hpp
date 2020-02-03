@@ -19,7 +19,7 @@ class Getraenk {
     /**
      * @returns Masse des Alkohols im gewählten Getränk in g
      */
-    float getAlkoholMasse();
+    const float getAlkoholMasse();
     
   protected:
     float volumenprozent; //!< Volumenprozent des Alkohols im Getränk
